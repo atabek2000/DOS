@@ -1,0 +1,93 @@
+ScreenManager:
+    AuthScreen:
+    MainScreen:
+<AuthScreen>:
+    name: 'menu'
+    Image:
+        source: 'logo.png'
+        size_hint_y: None
+        pos_hint : {"center_x":.5, 'center_y':0.8}
+        allow_stretch: True
+    MDLabel:
+        text : 'Добро пожаловать!'
+        font_size : 30
+        halign : 'center'
+        size_hint_y : None
+        height : self.texture_size[1]
+        pos_hint : {"center_x":.5, 'center_y':0.68}
+    MDLabel:
+        text : 'Введите свое имя и почту'
+        font_size : 
+        halign : 'center'
+        size_hint_y : None
+        height : self.texture_size[1]
+        pos_hint : {"center_x":.5, 'center_y':0.63}
+    MDTextFieldRound:
+        id : name
+        hint_text : "Имя"
+        icon_left : "account"
+        size_hint_x : None
+        width : 220
+        font_size : 15
+        normal_color : [1,1,1,1]
+        pos_hint : {"center_x":.5, 'center_y':0.5}
+    MDTextFieldRound:
+        id : email
+        hint_text : "email"
+        icon_left : "email"
+        size_hint_x : None
+        width : 220
+        font_size : 15
+        theme_text_color : 'Secondary'
+        normal_color : [1,1,1,1]
+        pos_hint : {"center_x":.5, 'center_y':0.43}
+        line_color : [0,0,1,1]
+    MDRoundFlatButton:
+        text : 'Регистрация'
+        pos_hint : {'center_x':.5, 'center_y':0.3}
+        font_size : 15
+        on_press: root.manager.current = 'profile'
+    MDRoundFlatButton:
+        text : 'Пропустить'
+        pos_hint : {'center_x':.5, 'center_y':0.23}
+        font_size : 15
+        width: 200
+        on_press: root.manager.current = 'profile'
+    
+<MainScreen>:
+    name: 'profile'
+    Screen:
+        NavigationLayout:
+            ScreenManager:
+                Screen:
+                    BoxLayout:
+                        orientation:'vertical'
+                        MDToolbar:
+                            height: '100dp'
+                            left_action_items: [['menu', lambda x: nav_drawer.set_state('toggle')]]
+                            elevation: 10
+                        Widget:
+
+        MDNavigationDrawer:
+            id: nav_drawer   
+            BoxLayout:
+                orientation:'vertical'
+
+                Image:
+                    source: 'logo.PNG'
+                    size_hint_y: None
+                ScrollView:
+                    MDList:
+                        OneLineIconListItem:
+                            text: 'Региcтрация'
+                            IconLeftWidget:
+                                icon: 'account-arrow-right'
+                        OneLineIconListItem:
+                            text: 'Наcтройки'
+                            IconLeftWidget:
+                                icon: 'cog'
+                        OneLineIconListItem:
+                            text: 'Оставить отзыв'
+                            IconLeftWidget:
+                                icon: 'comment-account'
+                
